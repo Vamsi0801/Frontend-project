@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tech.Care — Patient Dashboard (Jessica Taylor)</title>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+  <link rel="stylesheet" href="styles.min.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">Tech.Care</div>
+    <nav class="topnav">
+      <button class="navbtn active">Patients</button>
+      <button class="navbtn">Schedule</button>
+      <button class="navbtn">Messages</button>
+    </nav>
+    <div class="user">Dr. Jose Simmons</div>
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-title">Patients</div>
+      <ul id="patientList" class="patient-list">
+        <!-- We'll inject the patient items but only Jessica will be highlighted -->
+      </ul>
+    </aside>
+
+    <section class="content">
+      <div class="diagnosis-history card">
+        <div class="dh-top">
+          <h3>Diagnosis History</h3>
+          <div class="chart-wrapper">
+            <canvas id="bpChart" width="600" height="260"></canvas>
+          </div>
+          <div class="bp-stats" id="bpStats">
+            <!-- systolic/diastolic summary -->
+          </div>
+        </div>
+
+        <div class="vitals-row">
+          <div class="vital-card">
+            <div class="vital-icon">🫁</div>
+            <div class="vital-title">Respiratory Rate</div>
+            <div class="vital-value" id="respRate">-</div>
+            <div class="vital-note" id="respNote">Normal</div>
+          </div>
+          <div class="vital-card">
+            <div class="vital-icon">🌡️</div>
+            <div class="vital-title">Temperature</div>
+            <div class="vital-value" id="temp">-</div>
+            <div class="vital-note" id="tempNote">Normal</div>
+          </div>
+          <div class="vital-card highlighted">
+            <div class="vital-icon">❤️</div>
+            <div class="vital-title">Heart Rate</div>
+            <div class="vital-value" id="heartRate">-</div>
+            <div class="vital-note" id="hrNote">Normal</div>
+          </div>
+        </div>
+
+        <div class="diagnostic-list card" id="diagListCard">
+          <h4>Diagnostic List</h4>
+          <table id="diagTable" class="diag-table">
+            <thead>
+              <tr><th>Problem/Diagnosis</th><th>Description</th><th>Status</th></tr>
+            </thead>
+            <tbody>
+              <!-- rows injected -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <aside class="rightbar">
+      <div class="profile-card card" id="profileCard">
+        <img src="https://fedskillstest.ct.digital/4.png" alt="Jessica Taylor" class="profile-photo" />
+        <h3 id="profileName">Jessica Taylor</h3>
+        <div class="profile-item"><strong>Date Of Birth:</strong> <span id="dob">-</span></div>
+        <div class="profile-item"><strong>Gender:</strong> <span id="gender">-</span></div>
+        <!-- Hidden by default: contact, emergency, insurance -->
+        <div class="profile-item" id="contactBlock" style="display:none"><strong>Contact Info:</strong> <span id="contactInfo">-</span></div>
+        <div class="profile-item" id="emergencyBlock" style="display:none"><strong>Emergency Contacts:</strong> <span id="emergency">-</span></div>
+        <div class="profile-item" id="insuranceBlock" style="display:none"><strong>Insurance Provider:</strong> <span id="insurance">-</span></div>
+        <button type="button" id="showAllBtn" class="button" onclick="showDetails()">Show All Information</button>
+      </div>
+
+      <div class="lab-results card">
+        <h4>Lab Results</h4>
+        <ul id="labList">
+          <li>Blood Tests <button class="icon-btn">⬇</button></li>
+          <li>CT Scans <button class="icon-btn">⬇</button></li>
+          <li>Radiology Reports <button class="icon-btn">⬇</button></li>
+        </ul>
+      </div>
+    </aside>
+  </main>
+
+  <script src="app.min.js"></script>
+</body>
+</html>
